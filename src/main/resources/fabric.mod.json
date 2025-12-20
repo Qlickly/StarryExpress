@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "starexpress",
+  "version": "${version}",
+
+  "name": "Starry Express",
+  "description": "A Harpy Express addon focused around decoration, roles, and quality of life.",
+  "authors": ["Stargazer (aka. AussieBox)"],
+  "contact": {},
+
+  "license": "MIT",
+  "icon": "assets/starexpress/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "org.aussiebox.starexpress.client.StarryExpressClient"
+    ],
+    "main": [
+      "org.aussiebox.starexpress.StarryExpress"
+    ]
+  },
+
+  "mixins": [
+    "starexpress.mixins.json",
+    {
+      "config": "starexpress.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "harpymodloader": "*"
+  }
+}

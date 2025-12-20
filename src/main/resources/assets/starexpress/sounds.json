@@ -1,0 +1,8 @@
+{
+  "block.stargazer_plush.honk": {
+    "sounds": [
+      "starexpress:block/stargazer_plush_honk"
+    ],
+    "subtitle": "subtitles.ratatouille.block.plush_honk"
+  }
+}
