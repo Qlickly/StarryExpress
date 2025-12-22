@@ -53,7 +53,7 @@ public class GuidebookScreen extends BaseOwoScreen<FlowLayout> {
     private String displayedEntry;
     private ButtonComponent displayedEntryButton;
 
-    private final ScrollContainer<FlowLayout> roleButtonList = Containers.verticalScroll(Sizing.expand(40), Sizing.fill(), Containers.verticalFlow(Sizing.content(), Sizing.content()));
+    private final ScrollContainer<FlowLayout> roleButtonList = Containers.verticalScroll(Sizing.expand(40), Sizing.fill(), Containers.verticalFlow(Sizing.content(), Sizing.content())).scrollbar(ScrollContainer.Scrollbar.flat(Color.WHITE)).scrollbarThiccness(1).scrollStep(8);
     private ScrollContainer<FlowLayout> currentRoleButtonList;
 
     private final FlowLayout informationFlow = Containers.verticalFlow(Sizing.expand(60), Sizing.fill());
@@ -65,7 +65,7 @@ public class GuidebookScreen extends BaseOwoScreen<FlowLayout> {
         setRoleButtonList(roleButtonList);
         setInformationFlow(informationFlow);
         root.surface(Surface.VANILLA_TRANSLUCENT);
-        root.child(getRoleButtonList()).padding(Insets.of(10));
+        root.child(getRoleButtonList()).padding(Insets.of(10)).margins(Insets.bottom(10));
         root.child(getInformationFlow()).padding(Insets.of(10));
     }
 
@@ -77,13 +77,14 @@ public class GuidebookScreen extends BaseOwoScreen<FlowLayout> {
         this.currentInformationFlow = layout;
         this.currentInformationFlow.clearChildren();
 
-        ScrollContainer<FlowLayout> roleDescription = Containers.verticalScroll(Sizing.fill(), Sizing.fill(), Containers.verticalFlow(Sizing.fill(), Sizing.fill()));
+        ScrollContainer<FlowLayout> roleDescription = Containers.verticalScroll(Sizing.fill(), Sizing.fill(), Containers.verticalFlow(Sizing.content(), Sizing.content())).scrollbar(ScrollContainer.Scrollbar.flat(Color.WHITE)).scrollbarThiccness(1).scrollStep(8);
         FlowLayout scrollLayout = (FlowLayout) roleDescription.children().getFirst();
-        scrollLayout.child(Components.label(Component.empty()).horizontalTextAlignment(HorizontalAlignment.LEFT).sizing(Sizing.fill(), Sizing.content()).id("role_description"));
+        scrollLayout.clearChildren();
+        scrollLayout.child(Components.label(Component.empty()).horizontalTextAlignment(HorizontalAlignment.LEFT).sizing(Sizing.fill(), Sizing.content()).margins(Insets.bottom(50)).id("role_description"));
 
-        this.currentInformationFlow.child(Components.label(Component.empty().withStyle(Style.EMPTY.withFont(StarryExpress.id("guidebook_heading")))).lineHeight(18).horizontalTextAlignment(HorizontalAlignment.LEFT).sizing(Sizing.fill(), Sizing.content()).margins(Insets.bottom(3)).id("role_name"));
-        this.currentInformationFlow.child(Components.label(Component.empty()).horizontalTextAlignment(HorizontalAlignment.LEFT).sizing(Sizing.fill(), Sizing.content()).margins(Insets.bottom(10)).id("role_title"));
-        this.currentInformationFlow.child(roleDescription).id("role_description_container");
+        this.currentInformationFlow.child(Components.label(Component.empty().withStyle(Style.EMPTY.withFont(StarryExpress.id("guidebook_heading")))).lineHeight(18).horizontalTextAlignment(HorizontalAlignment.LEFT).sizing(Sizing.fill(), Sizing.content()).margins(Insets.bottom(3)).id("role_name")).padding(Insets.horizontal(10));
+        this.currentInformationFlow.child(Components.label(Component.empty()).horizontalTextAlignment(HorizontalAlignment.LEFT).sizing(Sizing.fill(), Sizing.content()).margins(Insets.bottom(10)).id("role_title")).padding(Insets.horizontal(10));
+        this.currentInformationFlow.child(roleDescription).padding(Insets.horizontal(10)).id("role_description_container");
     }
 
     public ScrollContainer<FlowLayout> getRoleButtonList() {

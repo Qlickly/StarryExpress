@@ -19,6 +19,7 @@ public class StarryExpress implements ModInitializer {
         ModBlockEntities.init();
         ModBlocks.init();
         ModItems.init();
+        StarryExpressRoles.init();
     }
 
     public static ResourceLocation id(String key) {
