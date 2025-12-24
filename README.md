@@ -5,8 +5,7 @@
 
 <h2></h2>
 
-Starry Express is an addon mod for [WATHE](https://modrinth.com/mod/wathe)  by doctor4t. To learn how to play WATHE alongside addon mods like this one, check out agmas' video:
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/h_c-dpjlONY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+Starry Express is an addon mod for [WATHE](https://modrinth.com/mod/wathe)  by doctor4t. To learn how to play WATHE alongside addon mods like this one, check out [agmas' video.](https://youtu.be/h_c-dpjlONY?si=C-eqzjIa0_O_2KbV)
 
 <h2></h2>
 
