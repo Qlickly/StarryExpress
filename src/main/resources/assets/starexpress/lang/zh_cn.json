@@ -23,8 +23,8 @@
       "guidebook.category.roles.evil": "杀手阵营",
   "guidebook.category.modifiers": "附加词条",
   "guidebook.category.quick_travel": "快速跳转",
-  "guidebook.role.credits": "From ",
-  "guidebook.role.creator": "By ",
+  "guidebook.role.credits": "来自 ",
+  "guidebook.role.creator": "创作者 ",
 
   "guidebook.namespace.wathe": "哈比快车",
   "guidebook.namespace.starexpress": "星光快车",
@@ -46,7 +46,7 @@
       "guidebook.role.description.starexpress:starstruck": "一名爱好和平的乘客，拥有奇迹的能力，想要帮助他人，却经常不被理解显得格格不入。\n\n每间隔 90 秒，星光可以激活他的能力，获得 15 秒的透视本能与更快的移动速度。但这样会暴露自己的身份，将自己暴露在危险之中。\n\n每完成一项任务，星光能力的冷却时长将会减免 5 秒。",
   "guidebook.role.starexpress:allergic": "过敏患者",
       "guidebook.role.title.starexpress:allergic": "家庭遗传",
-      "guidebook.role.description.starexpress:allergic": "过敏患者的医疗记录证明，他有严重生理缺陷——无论是吃还是喝，都可能出现严重的副作用。\\n\\n根据指定的词条，随机选择过敏类型。\\n\\n在食用会导致过敏的食物或饮品后，过敏者将会有\\n50% 的概率不会出现副作用\\n16.67% 的概率获得 3 秒透视本能\\n16.67% 的概率获得一次攻击免疫\\n16.67% 的概率免疫毒药\\n\\n如果此项词条被开启，则随机一名乘客 33.33% 的概率感染过敏症状\\n似乎恋人不会过敏",
+      "guidebook.role.description.starexpress:allergic": "过敏患者的医疗记录证明，他有严重生理缺陷——无论是吃还是喝，都可能出现严重的副作用。\n\n根据指定的词条，随机选择过敏类型。\n\n在食用会导致过敏的食物或饮品后，过敏者将会有\n50% 的概率不会出现副作用\n16.67% 的概率获得 3 秒透视本能\n16.67% 的概率获得一次攻击免疫\n16.67% 的概率免疫毒药\n\n如果此项词条被开启，则随机一名乘客 33.33% 的概率感染过敏症状\n似乎恋人不会过敏",
   
   "guidebook.role.noellesroles:jester": "弄臣",
       "guidebook.role.title.noellesroles:jester": "流亡魔术师",
