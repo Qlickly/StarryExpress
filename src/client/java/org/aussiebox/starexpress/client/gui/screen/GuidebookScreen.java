@@ -20,6 +20,7 @@ import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.world.entity.player.Player;
+import org.agmas.harpymodloader.component.WorldModifierComponent;
 import org.agmas.harpymodloader.modifiers.HMLModifiers;
 import org.agmas.harpymodloader.modifiers.Modifier;
 import org.aussiebox.starexpress.StarryExpress;
@@ -74,21 +75,29 @@ public class GuidebookScreen extends BaseOwoScreen<FlowLayout> {
     private String displayedEntry;
     private ButtonComponent displayedEntryButton;
 
-    private final ScrollContainer<FlowLayout> roleButtonList = Containers.verticalScroll(Sizing.expand(40), Sizing.fill(), Containers.verticalFlow(Sizing.content(), Sizing.content())).scrollbar(ScrollContainer.Scrollbar.flat(Color.WHITE)).scrollbarThiccness(1).scrollStep(12);
+    private final ScrollContainer<FlowLayout> roleButtonList = Containers.verticalScroll(Sizing.expand(40), Sizing.expand(10), Containers.verticalFlow(Sizing.content(), Sizing.content())).scrollbar(ScrollContainer.Scrollbar.flat(Color.WHITE)).scrollbarThiccness(1).scrollStep(12);
     private ScrollContainer<FlowLayout> currentRoleButtonList;
 
-    private final FlowLayout informationFlow = Containers.verticalFlow(Sizing.expand(60), Sizing.fill());
+    private final ScrollContainer<FlowLayout> quickTravelList = Containers.verticalScroll(Sizing.expand(40), Sizing.expand(10), Containers.verticalFlow(Sizing.content(), Sizing.content())).scrollbar(ScrollContainer.Scrollbar.flat(Color.WHITE)).scrollbarThiccness(1).scrollStep(12);
+    private ScrollContainer<FlowLayout> currentQuickTravelList;
+
+    private final FlowLayout informationFlow = Containers.verticalFlow(Sizing.expand(), Sizing.fill());
     private FlowLayout currentInformationFlow;
 
     @Override
     protected void build(FlowLayout root) {
         getRoleInfo();
         getRoleCreators();
+
         setRoleButtonList(roleButtonList);
         setInformationFlow(informationFlow);
+
         root.surface(Surface.VANILLA_TRANSLUCENT);
-        root.child(getRoleButtonList()).padding(Insets.of(10));
-        root.child(getInformationFlow()).padding(Insets.of(10));
+        root.child(Containers.verticalFlow(Sizing.content(), Sizing.content())
+                .child(getRoleButtonList().id("role_button_list"))
+                .padding(Insets.of(10))
+                .id("role_buttons"));
+        root.child(getInformationFlow().padding(Insets.of(10)));
 
         /// OPEN CURRENT ROLE IF POSSIBLE
 
@@ -100,31 +109,13 @@ public class GuidebookScreen extends BaseOwoScreen<FlowLayout> {
         String roleID = game.getRole(player).identifier().toString();
         if (!roleInfo.containsKey(roleID)) return;
 
-        setDisplayedEntry(roleID);
+        setQuickTravelList(quickTravelList);
+        root.childById(FlowLayout.class, "role_buttons")
+                .child(Components.box(Sizing.fill(38), Sizing.fixed(1)).color(Color.ofArgb(0x33FFFFFF)).margins(Insets.of(4, 0, 10, 10)))
+                .child(getQuickTravelList());
+        this.currentRoleButtonList.verticalSizing(Sizing.expand(90));
 
-        CollapsibleContainer roleContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.roles");
-        CollapsibleContainer goodRoleContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.roles.good");
-        CollapsibleContainer neutralRoleContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.roles.neutral");
-        CollapsibleContainer evilRoleContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.roles.evil");
-        CollapsibleContainer modifierContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.modifiers");
-
-        if (roleInfo.get(roleID).guidebookEntry() == GuidebookEntry.GOOD) {
-            if (!roleContainer.expanded()) roleContainer.toggleExpansion();
-            if (!goodRoleContainer.expanded()) goodRoleContainer.toggleExpansion();
-        }
-        if (roleInfo.get(roleID).guidebookEntry() == GuidebookEntry.NEUTRAL) {
-            if (!roleContainer.expanded()) roleContainer.toggleExpansion();
-            if (!neutralRoleContainer.expanded()) neutralRoleContainer.toggleExpansion();
-        }
-        if (roleInfo.get(roleID).guidebookEntry() == GuidebookEntry.EVIL) {
-            if (!roleContainer.expanded()) roleContainer.toggleExpansion();
-            if (!evilRoleContainer.expanded()) evilRoleContainer.toggleExpansion();
-        }
-        if (roleInfo.get(roleID).type() == RoleType.MODIFIER) {
-            if (!modifierContainer.expanded()) modifierContainer.toggleExpansion();
-        }
-
-        this.currentRoleButtonList.scrollTo(roleButtons.get(roleID));
+        openToEntry(roleID);
     }
 
     public FlowLayout getInformationFlow() {
@@ -200,6 +191,48 @@ public class GuidebookScreen extends BaseOwoScreen<FlowLayout> {
         layout.child(Components.box(Sizing.fill(), Sizing.fixed(20)).color(Color.ofArgb(0x00000000)));
     }
 
+    public ScrollContainer<FlowLayout> getQuickTravelList() {
+        return this.currentQuickTravelList;
+    }
+
+    public void setQuickTravelList(ScrollContainer<FlowLayout> container) {
+        this.currentQuickTravelList = container;
+        FlowLayout layout = (FlowLayout) this.currentQuickTravelList.children().getFirst();
+        layout.clearChildren();
+
+        Player player = Minecraft.getInstance().player;
+        GameWorldComponent world = GameWorldComponent.KEY.get(player.level());
+        WorldModifierComponent mod = WorldModifierComponent.KEY.get(player.level());
+
+        CollapsibleContainer modifierContainer = Containers.collapsible(Sizing.expand(40), Sizing.content(), Component.translatable("guidebook.category.modifiers"), true);
+
+        for (Modifier modifier : mod.getModifiers(player)) {
+            String modID = modifier.identifier.toString();
+            if (!roleInfo.containsKey(modID)) continue;
+
+            ButtonComponent button = Components.button(
+                    Component.translatable("guidebook.role." + modID).withColor(0xFFFFFF).append("                                                                                         "),
+                    buttonComponent -> openToEntry(modID)
+            ).renderer(ButtonComponent.Renderer.texture(StarryExpress.id("textures/empty.png"), 0, 0, 1, 1));
+
+            modifierContainer.child(button.sizing(Sizing.content(), Sizing.content()).id("quick_travel." + modID));
+        }
+
+        String roleID = world.getRole(player).identifier().toString();
+        ButtonComponent button = Components.button(
+                Component.translatable("guidebook.role." + roleID).withColor(0xFFFFFF).append("                                                                                         "),
+                buttonComponent -> openToEntry(roleID)
+        ).renderer(ButtonComponent.Renderer.texture(StarryExpress.id("textures/empty.png"), 0, 0, 1, 1));
+
+        CollapsibleContainer quickTravelContainer = Containers.collapsible(Sizing.expand(), Sizing.content(), Component.translatable("guidebook.category.quick_travel"), false);
+
+        if (roleInfo.containsKey(roleID)) quickTravelContainer.child(button.sizing(Sizing.content(), Sizing.content()).id("quick_travel." + roleID));
+        quickTravelContainer.child(modifierContainer);
+        quickTravelContainer.id("quick_travel_container");
+
+        this.currentQuickTravelList.child(quickTravelContainer);
+    }
+
     public void setDisplayedEntry(String roleID) {
         this.displayedEntry = roleID;
         if (this.displayedEntryButton != null) {
@@ -225,8 +258,55 @@ public class GuidebookScreen extends BaseOwoScreen<FlowLayout> {
         this.displayedEntryButton = newButton;
     }
 
+    public void openToEntry(String roleID) {
+        setDisplayedEntry(roleID);
+
+        CollapsibleContainer roleContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.roles");
+        CollapsibleContainer goodRoleContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.roles.good");
+        CollapsibleContainer neutralRoleContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.roles.neutral");
+        CollapsibleContainer evilRoleContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.roles.evil");
+        CollapsibleContainer modifierContainer = this.currentRoleButtonList.childById(CollapsibleContainer.class, "category.modifiers");
+
+        if (roleInfo.get(roleID).guidebookEntry() == GuidebookEntry.GOOD) {
+            if (!roleContainer.expanded()) roleContainer.toggleExpansion();
+            if (!goodRoleContainer.expanded()) goodRoleContainer.toggleExpansion();
+        }
+        if (roleInfo.get(roleID).guidebookEntry() == GuidebookEntry.NEUTRAL) {
+            if (!roleContainer.expanded()) roleContainer.toggleExpansion();
+            if (!neutralRoleContainer.expanded()) neutralRoleContainer.toggleExpansion();
+        }
+        if (roleInfo.get(roleID).guidebookEntry() == GuidebookEntry.EVIL) {
+            if (!roleContainer.expanded()) roleContainer.toggleExpansion();
+            if (!evilRoleContainer.expanded()) evilRoleContainer.toggleExpansion();
+        }
+        if (roleInfo.get(roleID).type() == RoleType.MODIFIER) {
+            if (!modifierContainer.expanded()) modifierContainer.toggleExpansion();
+        }
+
+        this.currentRoleButtonList.scrollTo(roleButtons.get(roleID));
+    }
+
     @Override
     public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
+
+        if (this.currentQuickTravelList == null) return;
+
+        CollapsibleContainer quickTravelContainer = this.currentQuickTravelList.childById(CollapsibleContainer.class, "quick_travel_container");
+
+        Player player = Minecraft.getInstance().player;
+        GameWorldComponent game = GameWorldComponent.KEY.get(player.level());
+        if (!game.isRunning()) return;
+        if (!GameFunctions.isPlayerAliveAndSurvival(player)) return;
+
+        if (quickTravelContainer.expanded()) {
+            this.currentQuickTravelList.verticalSizing(Sizing.expand(30));
+            this.currentRoleButtonList.verticalSizing(Sizing.expand(70));
+        } else {
+            this.currentQuickTravelList.verticalSizing(Sizing.expand(10));
+            this.currentRoleButtonList.verticalSizing(Sizing.expand(90));
+        }
     }
+
+
 }
