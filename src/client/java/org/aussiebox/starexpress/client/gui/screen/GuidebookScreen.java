@@ -75,7 +75,7 @@ public class GuidebookScreen extends BaseOwoScreen<FlowLayout> {
     private String displayedEntry;
     private ButtonComponent displayedEntryButton;
 
-    private final ScrollContainer<FlowLayout> roleButtonList = Containers.verticalScroll(Sizing.expand(40), Sizing.expand(10), Containers.verticalFlow(Sizing.content(), Sizing.content())).scrollbar(ScrollContainer.Scrollbar.flat(Color.WHITE)).scrollbarThiccness(1).scrollStep(12);
+    private final ScrollContainer<FlowLayout> roleButtonList = Containers.verticalScroll(Sizing.expand(40), Sizing.expand(), Containers.verticalFlow(Sizing.content(), Sizing.content())).scrollbar(ScrollContainer.Scrollbar.flat(Color.WHITE)).scrollbarThiccness(1).scrollStep(12);
     private ScrollContainer<FlowLayout> currentRoleButtonList;
 
     private final ScrollContainer<FlowLayout> quickTravelList = Containers.verticalScroll(Sizing.expand(40), Sizing.expand(10), Containers.verticalFlow(Sizing.content(), Sizing.content())).scrollbar(ScrollContainer.Scrollbar.flat(Color.WHITE)).scrollbarThiccness(1).scrollStep(12);
