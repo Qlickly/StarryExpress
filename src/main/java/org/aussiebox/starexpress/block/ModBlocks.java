@@ -11,7 +11,7 @@ public interface ModBlocks {
 
     BlockRegistrar registrar = new BlockRegistrar(StarryExpress.MOD_ID);
 
-    Block STARGAZER_PLUSH = registrar.createWithItem("stargazer_plush", new PlushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACK_WOOL).noOcclusion()));
+    Block CIRCUITWEAVER_PLUSH = registrar.createWithItem("circuitweaver_plush", new PlushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLACK_WOOL).noOcclusion()));
 
     static void init() {
         registrar.registerEntries();

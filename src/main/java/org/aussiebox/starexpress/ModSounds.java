@@ -7,7 +7,7 @@ public interface ModSounds {
 
     SoundEventRegistrar registrar = new SoundEventRegistrar(StarryExpress.MOD_ID);
 
-    SoundEvent BLOCK_STARGAZER_PLUSH_HONK = registrar.create("block.stargazer_plush.honk");
+    SoundEvent BLOCK_CIRCUITWEAVER_PLUSH_HONK = registrar.create("block.circuitweaver_plush.honk");
 
     static void init() {
         registrar.registerEntries();

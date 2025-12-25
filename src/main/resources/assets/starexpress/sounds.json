@@ -1,7 +1,7 @@
 {
-  "block.stargazer_plush.honk": {
+  "block.circuitweaver_plush.honk": {
     "sounds": [
-      "starexpress:block/stargazer_plush_honk"
+      "starexpress:block/circuitweaver_plush_honk"
     ],
     "subtitle": "subtitles.ratatouille.block.plush_honk"
   }

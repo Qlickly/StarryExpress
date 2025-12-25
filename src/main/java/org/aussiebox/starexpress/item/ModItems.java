@@ -17,6 +17,6 @@ public interface ModItems {
     }
 
     static void addFunctionalEntries(FabricItemGroupEntries fabricItemGroupEntries) {
-        fabricItemGroupEntries.accept(ModBlocks.STARGAZER_PLUSH);
+        fabricItemGroupEntries.accept(ModBlocks.CIRCUITWEAVER_PLUSH);
     }
 }

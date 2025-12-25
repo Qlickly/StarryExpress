@@ -15,7 +15,7 @@ public class GuidebookButtonWidget extends Button {
     public final LimitedInventoryScreen screen;
 
     public GuidebookButtonWidget(LimitedInventoryScreen screen, int x, int y) {
-        super(x, y, 16, 16, Component.translatable("guidebook.tooltip.open"), button -> Minecraft.getInstance().setScreen(new GuidebookScreen()), DEFAULT_NARRATION);
+        super(x, y, 16, 16, Component.empty(), button -> Minecraft.getInstance().setScreen(new GuidebookScreen()), DEFAULT_NARRATION);
         this.screen = screen;
     }
 

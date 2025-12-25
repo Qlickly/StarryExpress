@@ -1,7 +1,6 @@
 package org.aussiebox.starexpress.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import dev.doctor4t.ratatouille.index.RatatouilleSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -52,8 +51,8 @@ public class PlushBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     public static SoundEvent getSound(BlockState state) {
         SoundEvent ret = SoundEvents.WOOL_HIT;
-        if (state.getBlock() == ModBlocks.STARGAZER_PLUSH) {
-            ret = ModSounds.BLOCK_STARGAZER_PLUSH_HONK;
+        if (state.getBlock() == ModBlocks.CIRCUITWEAVER_PLUSH) {
+            ret = ModSounds.BLOCK_CIRCUITWEAVER_PLUSH_HONK;
         }
 
         return ret;
@@ -130,11 +129,11 @@ public class PlushBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
     }
 
     public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
-        return (BlockState)state.setValue(FACING, rotation.rotate((Direction)state.getValue(FACING)));
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
-        return state.rotate(mirror.getRotation((Direction)state.getValue(FACING)));
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
     protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
