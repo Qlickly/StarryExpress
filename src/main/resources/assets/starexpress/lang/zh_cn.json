@@ -87,7 +87,7 @@
   "guidebook.role.noellesroles:voodoo": "巫毒师",
       "guidebook.role.title.noellesroles:voodoo": "幕后操纵者",
       "guidebook.role.description.noellesroles:voodoo": "虽然巫毒教经常被人嘲笑是废物宗教，但是这位教徒却拥有真正的巫毒能力。\n\n巫毒师可指定一位乘客与自己绑定，如果巫毒师死亡，绑定的乘客将与自己一同走向灭亡。\n\n巫毒师每 30 秒可改变一次绑定的乘客。",
-  "guidebook.role.noellesroles:mimic": "模仿者",
+  "guidebook.role.noellesroles:mimic": "卧底",
       "guidebook.role.title.noellesroles:mimic": "双面间谍",
       "guidebook.role.description.noellesroles:mimic": "模仿者是一名间谍，他假扮成杀手。与他的一个朋友一起行动(这个朋友可能是也可能不是说不定应该是正在逃亡的杀人犯...)\n\n杀手会误以为模仿者是他们的同伙，但是模仿者只有一把仿真匕首。\n\n如果你能与模仿者合作，你就能在列车上占据上风，压制杀手们的行动。",
   "guidebook.role.noellesroles:awesome_binglus": "记者",
@@ -144,4 +144,5 @@
       "guidebook.role.title.northernlights:medium": "灵魂召唤师",
       "guidebook.role.description.northernlights:medium": "此身份的描述尚未编写"
 }
+
 
