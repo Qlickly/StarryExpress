@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "starexpress:block/stargazer_plush",
-		"particle": "starexpress:block/stargazer_plush"
+		"0": "starexpress:block/circuitweaver_plush",
+		"particle": "starexpress:block/circuitweaver_plush"
 	},
 	"elements": [
 		{

@@ -15,11 +15,15 @@ import net.minecraft.sounds.SoundSource;
 import org.aussiebox.starexpress.block.ModBlocks;
 import org.aussiebox.starexpress.block.entity.ModBlockEntities;
 import org.aussiebox.starexpress.cca.AbilityComponent;
+import org.aussiebox.starexpress.cca.ServerConfig;
 import org.aussiebox.starexpress.cca.StarstruckComponent;
 import org.aussiebox.starexpress.item.ModItems;
 import org.aussiebox.starexpress.packet.AbilityC2SPacket;
+import org.aussiebox.starexpress.packet.ChangeConfigOptionC2SPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Objects;
 
 public class StarryExpress implements ModInitializer {
 
@@ -33,10 +37,12 @@ public class StarryExpress implements ModInitializer {
         ModBlocks.init();
         ModItems.init();
 
+        StarryExpressCommands.init();
         StarryExpressRoles.init();
         StarryExpressModifiers.init();
 
         PayloadTypeRegistry.playC2S().register(AbilityC2SPacket.TYPE, AbilityC2SPacket.CODEC);
+        PayloadTypeRegistry.playC2S().register(ChangeConfigOptionC2SPacket.TYPE, ChangeConfigOptionC2SPacket.CODEC);
 
         registerPackets();
     }
@@ -57,6 +63,16 @@ public class StarryExpress implements ModInitializer {
                 level.sendParticles(ParticleTypes.END_ROD, context.player().getX(), context.player().getY(), context.player().getZ(), 75,  0.5,  1.5,  0.5,  0.1);
             }
 
+        });
+
+        ServerPlayNetworking.registerGlobalReceiver(ChangeConfigOptionC2SPacket.TYPE, (payload, context) -> {
+            ServerConfig config = ServerConfig.KEY.get(context.player().level());
+
+            if (Objects.equals(payload.option(), "starstruckReduceCooldown")) {
+                config.setStarstruckReduceCooldown(payload.value());
+            }
+
+            config.sync();
         });
     }
 

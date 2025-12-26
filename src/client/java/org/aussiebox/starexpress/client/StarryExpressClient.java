@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -18,8 +19,10 @@ import org.aussiebox.starexpress.StarryExpress;
 import org.aussiebox.starexpress.StarryExpressRoles;
 import org.aussiebox.starexpress.block.ModBlocks;
 import org.aussiebox.starexpress.block.entity.ModBlockEntities;
+import org.aussiebox.starexpress.client.gui.screen.ServerConfigScreen;
 import org.aussiebox.starexpress.client.render.blockentity.PlushBlockEntityRenderer;
 import org.aussiebox.starexpress.packet.AbilityC2SPacket;
+import org.aussiebox.starexpress.packet.OpenConfigS2CPacket;
 import org.lwjgl.glfw.GLFW;
 
 public class StarryExpressClient implements ClientModInitializer {
@@ -56,6 +59,19 @@ public class StarryExpressClient implements ClientModInitializer {
                     ClientPlayNetworking.send(new AbilityC2SPacket());
                 });
             }
+        });
+
+        PayloadTypeRegistry.playS2C().register(OpenConfigS2CPacket.TYPE, OpenConfigS2CPacket.CODEC);
+
+        registerPackets();
+    }
+
+    public void registerPackets() {
+        ClientPlayNetworking.registerGlobalReceiver(OpenConfigS2CPacket.TYPE, (payload, context) -> {
+
+            if (Minecraft.getInstance().player == null) return;
+            if (Minecraft.getInstance().player.hasPermissions(2)) Minecraft.getInstance().setScreen(new ServerConfigScreen());
+
         });
     }
 }
