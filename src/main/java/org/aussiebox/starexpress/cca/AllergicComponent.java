@@ -13,8 +13,7 @@ import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
 import java.util.UUID;
 
 public class AllergicComponent implements AutoSyncedComponent, ServerTickingComponent {
-    public static final ComponentKey<AllergicComponent> KEY =
-            ComponentRegistry.getOrCreate(StarryExpress.id("allergic"), AllergicComponent.class);
+    public static final ComponentKey<AllergicComponent> KEY = ComponentRegistry.getOrCreate(StarryExpress.id("allergic"), AllergicComponent.class);
 
     private final Player player;
     public int armor = 0;

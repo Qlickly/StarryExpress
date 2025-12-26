@@ -3,12 +3,15 @@ package org.aussiebox.starexpress;
 import net.minecraft.world.entity.player.Player;
 import org.aussiebox.starexpress.cca.AbilityComponent;
 import org.aussiebox.starexpress.cca.AllergicComponent;
+import org.aussiebox.starexpress.cca.ServerConfig;
 import org.aussiebox.starexpress.cca.StarstruckComponent;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
 import org.ladysnake.cca.api.v3.entity.RespawnCopyStrategy;
+import org.ladysnake.cca.api.v3.world.WorldComponentFactoryRegistry;
+import org.ladysnake.cca.api.v3.world.WorldComponentInitializer;
 
-public class StarryExpressComponents implements EntityComponentInitializer {
+public class StarryExpressComponents implements EntityComponentInitializer, WorldComponentInitializer {
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
@@ -23,4 +26,8 @@ public class StarryExpressComponents implements EntityComponentInitializer {
                 .end(AllergicComponent::new);
     }
 
+    @Override
+    public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
+        registry.register(ServerConfig.KEY, ServerConfig::new);
+    }
 }

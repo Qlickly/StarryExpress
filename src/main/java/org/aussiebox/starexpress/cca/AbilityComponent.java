@@ -2,7 +2,6 @@ package org.aussiebox.starexpress.cca;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import org.aussiebox.starexpress.StarryExpress;
 import org.jetbrains.annotations.NotNull;
@@ -13,7 +12,7 @@ import org.ladysnake.cca.api.v3.component.tick.ClientTickingComponent;
 import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
 
 public class AbilityComponent implements AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
-    public static final ComponentKey<AbilityComponent> KEY = ComponentRegistry.getOrCreate(ResourceLocation.fromNamespaceAndPath(StarryExpress.MOD_ID, "ability"), AbilityComponent.class);
+    public static final ComponentKey<AbilityComponent> KEY = ComponentRegistry.getOrCreate(StarryExpress.id("ability"), AbilityComponent.class);
     private final Player player;
     public int cooldown = 0;
 

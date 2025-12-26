@@ -2,7 +2,6 @@ package org.aussiebox.starexpress.cca;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import org.aussiebox.starexpress.StarryExpress;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +11,7 @@ import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
 
 public class StarstruckComponent implements AutoSyncedComponent, ServerTickingComponent {
-    public static final ComponentKey<StarstruckComponent> KEY = ComponentRegistry.getOrCreate(ResourceLocation.fromNamespaceAndPath(StarryExpress.MOD_ID, "starstruck"), StarstruckComponent.class);
+    public static final ComponentKey<StarstruckComponent> KEY = ComponentRegistry.getOrCreate(StarryExpress.id("starstruck"), StarstruckComponent.class);
     private final Player player;
     public int ticks = 0;
 
