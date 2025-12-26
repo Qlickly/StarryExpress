@@ -23,11 +23,15 @@ Learn about Roles and Modifiers from WATHE and other addon mods, all from a user
 
 ## Roles
 ### **Starstruck** *[Civilian]*
-- Become *Starstruck* once every 90 seconds.
+- Become *Starstruck* once every 90 (configurable) seconds.
 - While *Starstruck*, move faster and see players through walls with passive instinct- but your role will be revealed to everyone nearby!
-- Shorten your ability cooldown by 5 seconds every time you complete a task.
+- Shorten your ability cooldown by 5 (configurable) seconds every time you complete a task.
 
 ## Decoration
 ### Plushies!
-Currently the only plushie added by the mod is the **Stargazer Plushie**, a plushie of my Wings of Fire OC!
+Currently the only plushie added by the mod is the **Circuitweaver Plushie**, a plushie of my Wings of Fire OC!
 I plan to add more plushies of my friends soon! Stay tuned for that :3
+
+## Special Thanks
+Huge thanks to the following users for their contributions to Starry Express:
+- Qlickly_ (Chinese Translations)
