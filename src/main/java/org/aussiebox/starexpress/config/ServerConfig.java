@@ -12,6 +12,8 @@ public class ServerConfig {
 
     @Comment("Config options related to the Starstruck role.")
     @Nest public StarstruckConfig starstruckConfig = new StarstruckConfig();
+    @Comment("Config options related to the Muzzler role.")
+    @Nest public MuzzlerConfig muzzlerConfig = new MuzzlerConfig();
     @Comment("Config options related to the Allergic modifier.")
     @Nest public AllergicConfig allergicConfig = new AllergicConfig();
 
@@ -60,6 +62,17 @@ public class ServerConfig {
 
         @Comment("The duration, in seconds, of the Allergic's instinct effect.")
         public int instinctDuration = 3;
+
+    }
+    public static class MuzzlerConfig {
+
+        @Comment("The cooldown, in seconds, of the Tape item when the Muzzler uses it on a player.")
+        @RangeConstraint(min = 0, max = 600)
+        public int tapeCooldown = 20;
+
+        @Comment("The time, in seconds, it takes for a silenced player to suffocate when outside. Set to 0 to disable.")
+        @RangeConstraint(min = 0, max = 600)
+        public int suffocationTime = 60;
 
     }
 }

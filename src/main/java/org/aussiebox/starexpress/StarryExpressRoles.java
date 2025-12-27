@@ -6,6 +6,7 @@ import org.agmas.harpymodloader.Harpymodloader;
 import org.agmas.harpymodloader.events.ResetPlayerEvent;
 import org.aussiebox.starexpress.cca.AbilityComponent;
 import org.aussiebox.starexpress.cca.AllergicComponent;
+import org.aussiebox.starexpress.cca.SilenceComponent;
 import org.aussiebox.starexpress.cca.StarstruckComponent;
 
 import java.util.HashMap;
@@ -28,15 +29,29 @@ public class StarryExpressRoles {
             false
     ));
 
+    public static Role MUZZLER = registerRole(new Role(
+            StarryExpress.id("muzzler"),
+            0x370387,
+            false,
+            true,
+            Role.MoodType.FAKE,
+            WatheRoles.KILLER.getMaxSprintTime(),
+            true
+    ));
+
     public static void init() {
 
         /// STARSTRUCK
         Harpymodloader.setRoleMaximum(STARSTRUCK, 1);
 
+        /// MUZZLER
+        Harpymodloader.setRoleMaximum(MUZZLER, 1);
+
         ResetPlayerEvent.EVENT.register(player -> {
             AbilityComponent.KEY.get(player).reset();
             AllergicComponent.KEY.get(player).reset();
             StarstruckComponent.KEY.get(player).reset();
+            SilenceComponent.KEY.get(player).reset();
         });
 
     }

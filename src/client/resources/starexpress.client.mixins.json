@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "GuidebookMixin",
+    "HeldItemRendererMixin",
+    "muzzler.MuzzlerShopMixin",
     "starstruck.StarstruckHudMixin"
   ],
   "injectors": {

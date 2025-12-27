@@ -16,7 +16,7 @@ import org.aussiebox.starexpress.block.entity.ModBlockEntities;
 import org.aussiebox.starexpress.cca.AbilityComponent;
 import org.aussiebox.starexpress.cca.StarstruckComponent;
 import org.aussiebox.starexpress.config.StarryExpressServerConfig;
-import org.aussiebox.starexpress.item.ModItems;
+import org.aussiebox.starexpress.item.StarryExpressItems;
 import org.aussiebox.starexpress.packet.AbilityC2SPacket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class StarryExpress implements ModInitializer {
         ModSounds.init();
         ModBlockEntities.init();
         ModBlocks.init();
-        ModItems.init();
+        StarryExpressItems.init();
 
         StarryExpressCommands.init();
         StarryExpressRoles.init();

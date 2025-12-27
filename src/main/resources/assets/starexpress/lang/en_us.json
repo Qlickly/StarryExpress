@@ -3,15 +3,21 @@
   "tip.starexpress.cooldown": "Ability usable in %ss",
 
   "block.starexpress.circuitweaver_plush": "Circuitweaver Plush",
+  "item.starexpress.tape": "Tape",
+      "item.starexpress.tape.tooltip.1": "Use on another player to silence their pathetic cries.",
+      "item.starexpress.tape.tooltip.2": "Silenced players will suffocate if left outside for too long.",
 
   "announcement.role.starexpress.starstruck": "Starstruck!",
   "announcement.goals.starexpress.starstruck": "Reveal your true power at the perfect moment.",
   "tip.starexpress.starstruck": "Use %s to go Starstruck!",
 
+  "announcement.role.starexpress.muzzler": "Muzzler",
+  "announcement.goals.starexpress.muzzler": "Stop passengers from passing on secrets...",
+  "death_reason.starexpress.silenced_and_outside": "lack of air flow.",
+
   "announcement.modifier.allergic": "Allergic!",
   "hud.allergic.hint": "Allergic",
   "death_reason.starexpress.allergies": "mysterious allergies.",
-  "hud.allergic.doctor_heads_up": "Someone on the train may have allergic reactions- stay close!",
   "hud.allergic.effect.instinct": "My eyesight feels sharper.",
   "hud.allergic.effect.armor": "I feel unstoppable!",
   "hud.allergic.effect.poison": "... Something's not right.",

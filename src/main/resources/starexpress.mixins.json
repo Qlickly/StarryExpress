@@ -4,10 +4,11 @@
   "package": "org.aussiebox.starexpress.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "GameFunctionsMixin",
     "MoodMixin",
-    "ResetterMixin",
     "allergic.AllergicEatMixin",
-    "allergic.AllergicGameFunctionsMixin"
+    "allergic.AllergicGameFunctionsMixin",
+    "muzzler.MuzzlerShopComponentMixin"
   ],
   "injectors": {
     "defaultRequire": 1

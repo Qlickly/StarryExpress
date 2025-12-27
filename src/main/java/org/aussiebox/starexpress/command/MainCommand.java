@@ -24,6 +24,7 @@ public class MainCommand {
         ServerPlayer player = source.getPlayer();
 
         SilenceComponent.KEY.get(player).setSilenced(true);
+        SilenceComponent.KEY.get(player).setSilencer(player.getUUID());
         SilenceComponent.KEY.get(player).sync();
 
         return 1;
