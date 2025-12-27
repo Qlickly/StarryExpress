@@ -21,6 +21,9 @@
     ],
     "cardinal-components": [
       "org.aussiebox.starexpress.StarryExpressComponents"
+    ],
+    "voicechat": [
+      "org.aussiebox.starexpress.voice.StarryExpressVoiceChatPlugin"
     ]
   },
 
@@ -28,7 +31,8 @@
     "cardinal-components": [
       "starexpress:ability",
       "starexpress:starstruck",
-      "starexpress:allergic"
+      "starexpress:allergic",
+      "starexpress:silence"
     ]
   },
 
