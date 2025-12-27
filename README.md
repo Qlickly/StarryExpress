@@ -32,6 +32,16 @@ Learn about Roles and Modifiers from WATHE and other addon mods, all from a user
 Currently the only plushie added by the mod is the **Circuitweaver Plushie**, a plushie of my Wings of Fire OC!
 I plan to add more plushies of my friends soon! Stay tuned for that :3
 
+## For Server Owners
+### Configuration
+Starry Express aims to be as configurable as possible, and thus, contains server-sided config for server owners to change to their heart's content.
+
+You can find this config at ```config/starexpress-server.json5``` in your server's files.
+
+If, for whatever reason, you wish to play with Starry Express in a singleplayer instance, your client's config options will be used instead. Your client-sided options can be found in the same place as if they were on a server.
+
+> When joining a server, your client's config options will _not_ be overriden, but detached from the proper config instead, and thus, completely ignored. 
+
 ## Special Thanks
 Huge thanks to the following users for their contributions to Starry Express:
 - Qlickly_ (Chinese Translations)
