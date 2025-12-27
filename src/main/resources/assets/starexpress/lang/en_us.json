@@ -137,6 +137,9 @@
   "guidebook.role.stupid_express:lovers": "Lovers",
       "guidebook.role.title.stupid_express:lovers": "The Doomed Lovebirds",
       "guidebook.role.description.stupid_express:lovers": "Lovers are linked with heart and soul. If one falls, the other will feel a disturbance in the force- and immediately follow suit.\n\nLovers always appear in pairs- either a Civilian-Civilian or Civilian-Killer bond is formed. It is allegedly impossible for two killers to fall for each other.\n\nIf this modifier is enabled, two players are always chosen to be Lovers.",
+  "guidebook.role.stupid_express:initiate": "Initiate",
+      "guidebook.role.title.stupid_express:initiate": "The Revenge Seeker",
+      "guidebook.role.description.stupid_express:initiate": "The Initiate has boarded the %1$s with unsolved rivalries- and they come armed with the ability to end said rivalries forever.\n\nThe Initiate role is always chosen for two players. Both Initiates must race to earn 200 coins, then purchase a knife and be the direct cause of death for the other Initiate.\nUpon completing this task, the surviving Initiate will become a random killer role.\n\nIf an Initiate dies from causes other than a direct kill from their opposing Initiate, the surviving Initiate will become either a random killer role, a random neutral role, or an Amnesiac. This behavior is configurable in the Stupid Express server-sided config.",
 
   "guidebook.role.northernlights:diviner": "Diviner",
       "guidebook.role.title.northernlights:diviner": "The Seer of Truths",
