@@ -1,8 +1,10 @@
 package org.aussiebox.starexpress;
 
 import dev.doctor4t.wathe.cca.GameWorldComponent;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import dev.doctor4t.wathe.game.GameFunctions;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
@@ -11,9 +13,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import org.aussiebox.starexpress.block.ModBlocks;
 import org.aussiebox.starexpress.block.entity.ModBlockEntities;
 import org.aussiebox.starexpress.cca.AbilityComponent;
+import org.aussiebox.starexpress.cca.SilenceComponent;
 import org.aussiebox.starexpress.cca.StarstruckComponent;
 import org.aussiebox.starexpress.config.StarryExpressServerConfig;
 import org.aussiebox.starexpress.item.StarryExpressItems;
@@ -41,6 +46,7 @@ public class StarryExpress implements ModInitializer {
         PayloadTypeRegistry.playC2S().register(AbilityC2SPacket.TYPE, AbilityC2SPacket.CODEC);
 
         registerPackets();
+        registerEvents();
     }
 
     public void registerPackets() {
@@ -60,6 +66,42 @@ public class StarryExpress implements ModInitializer {
             }
 
         });
+    }
+
+    public void registerEvents() {
+
+        UseEntityCallback.EVENT.register((player, level, hand, entity, hitResult) -> {
+
+            if (!(entity instanceof Player victim)) return InteractionResult.PASS;
+            if (CONFIG.muzzlerConfig.tapeTearCheckCount() == 0) return InteractionResult.PASS;
+
+            if (!player.getMainHandItem().is(StarryExpressItems.TAPE)) {
+                SilenceComponent victimSilence = SilenceComponent.KEY.get(victim);
+                if (!victimSilence.isSilenced()) return InteractionResult.PASS;
+                if (SilenceComponent.KEY.get(player).isSilenced()) return InteractionResult.PASS;
+
+                victimSilence.setTearChecks(victimSilence.getTearChecks() + 1);
+                victim.level().playSound(null, victim.getX(), victim.getY(), victim.getZ(), ModSounds.ITEM_TAPE_APPLY, SoundSource.PLAYERS, 1.0F, 2.0F);
+
+                if (victimSilence.getTearChecks() >= CONFIG.muzzlerConfig.tapeTearCheckCount()) victimSilence.setSilenced(false);
+
+                victimSilence.sync();
+
+                PlayerMoodComponent victimMood = PlayerMoodComponent.KEY.get(victim);
+
+                victimMood.setMood(victimMood.getMood() - CONFIG.muzzlerConfig.tapeTearMoodChange());
+                victimMood.sync();
+
+                if (victimMood.getMood() <= 0.0F && CONFIG.muzzlerConfig.killIfCheckedAtZero()) {
+                    GameFunctions.killPlayer(victim, true, victim.level().getPlayerByUUID(victimSilence.getSilencer()), StarryExpressConstants.SILENCED_TAPE_REMOVED_DEATH_REASON);
+                }
+
+                return InteractionResult.SUCCESS;
+            }
+
+            return InteractionResult.PASS;
+        });
+
     }
 
     public static ResourceLocation id(String key) {

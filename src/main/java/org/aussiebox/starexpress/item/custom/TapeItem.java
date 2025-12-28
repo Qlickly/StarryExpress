@@ -35,6 +35,8 @@ public class TapeItem extends Item {
 
         if (!GameFunctions.isPlayerAliveAndSurvival(victim)) return InteractionResult.FAIL;
 
+        if (player.getCooldowns().isOnCooldown(itemStack.getItem())) return InteractionResult.FAIL;
+
         SilenceComponent victimSilence = SilenceComponent.KEY.get(victim);
 
         if (victimSilence.isSilenced()) return InteractionResult.FAIL;
@@ -56,5 +58,6 @@ public class TapeItem extends Item {
         super.appendHoverText(itemStack, context, tooltip, type);
         tooltip.add(Component.translatable("item.starexpress.tape.tooltip.1").withColor(0xAAAAAA));
         tooltip.add(Component.translatable("item.starexpress.tape.tooltip.2").withColor(0xAAAAAA));
+        tooltip.add(Component.translatable("item.starexpress.tape.tooltip.3").withColor(0xAAAAAA));
     }
 }

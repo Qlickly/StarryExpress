@@ -74,5 +74,20 @@ public class ServerConfig {
         @RangeConstraint(min = 0, max = 600)
         public int suffocationTime = 60;
 
+        @Comment("The number of times players need to tear the tape off of a silenced player to unsilence them. Set to 0 to disable this feature.")
+        @RangeConstraint(min = 0, max = 1337)
+        public int tapeTearCheckCount = 5;
+
+        @Comment("The amount of mood, on a scale of 0.0 to 1.0, that is taken from a player when another player attempts to tear their silencing tape off.")
+        @RangeConstraint(min = 0.0F, max = 1.0F)
+        public float tapeTearMoodChange = 0.1F;
+
+        @Comment("When enabled, completing a tape check on a player with 0.0 mood remaining will kill the checked player.")
+        public boolean killIfCheckedAtZero = true;
+
+        @Comment("The delay, in seconds, of the \"This player is Silenced\" tip showing up. Set to 0 to disable.")
+        @RangeConstraint(min = 0, max = 600)
+        public int displaySilencedTipDelay = 120;
+
     }
 }

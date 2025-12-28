@@ -16,6 +16,7 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.world.entity.player.Player;
 import org.agmas.noellesroles.client.NoellesrolesClient;
 import org.aussiebox.starexpress.StarryExpress;
 import org.aussiebox.starexpress.StarryExpressRoles;
@@ -28,6 +29,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class StarryExpressClient implements ClientModInitializer {
 
+    public static Player target;
     public static KeyMapping abilityBind;
 
     @Override

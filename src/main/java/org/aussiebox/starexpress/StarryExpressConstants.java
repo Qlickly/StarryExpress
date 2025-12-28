@@ -23,4 +23,5 @@ public interface StarryExpressConstants {
     });
 
     ResourceLocation SILENCED_OUTSIDE_DEATH_REASON = StarryExpress.id("silenced_and_outside");
+    ResourceLocation SILENCED_TAPE_REMOVED_DEATH_REASON = StarryExpress.id("tape_removed_low_mood");
 }

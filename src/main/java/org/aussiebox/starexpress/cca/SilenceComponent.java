@@ -33,12 +33,22 @@ public class SilenceComponent implements AutoSyncedComponent, ServerTickingCompo
 
     private int outsideTicks;
 
+    @Setter
+    @Getter
+    private int tearChecks;
+
+    @Getter
+    private int silencedTicks;
+
     public SilenceComponent(Player player) {
         this.player = player;
     }
 
     @Override
     public void serverTick() {
+        if (silenced) silencedTicks++;
+        else silencedTicks = 0;
+
         if (Wathe.isSkyVisibleAdjacent(player) && silenced) outsideTicks++;
         else outsideTicks = 0;
 
@@ -54,6 +64,8 @@ public class SilenceComponent implements AutoSyncedComponent, ServerTickingCompo
         this.silenced = false;
         this.silencer = null;
         this.outsideTicks = 0;
+        this.tearChecks = 0;
+        this.silencedTicks = 0;
         this.sync();
     }
 
@@ -67,6 +79,8 @@ public class SilenceComponent implements AutoSyncedComponent, ServerTickingCompo
         this.silenced = tag.contains("silenced") && tag.getBoolean("silenced");
         this.silencer = tag.contains("silencer") ? tag.getUUID("silencer") : null;
         this.outsideTicks = tag.contains("outside_ticks") ? tag.getInt("outside_ticks") : 0;
+        this.tearChecks = tag.contains("tear_checks") ? tag.getInt("tear_checks") : 0;
+        this.silencedTicks = tag.contains("silenced_ticks") ? tag.getInt("silenced_ticks") : 0;
     }
 
     @Override
@@ -74,6 +88,8 @@ public class SilenceComponent implements AutoSyncedComponent, ServerTickingCompo
         tag.putBoolean("silenced", this.silenced);
         tag.putUUID("silencer", Objects.requireNonNullElseGet(this.silencer, () -> UUID.fromString("e1e89fbb-3beb-492a-b1be-46a4ce19c9d1")));
         tag.putInt("outside_ticks", this.outsideTicks);
+        tag.putInt("tear_checks", this.tearChecks);
+        tag.putInt("silenced_ticks", this.silencedTicks);
     }
 
 }
