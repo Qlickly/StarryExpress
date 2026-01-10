@@ -3,6 +3,7 @@
   "tip.starexpress.cooldown": "Ability usable in %ss",
 
   "block.starexpress.circuitweaver_plush": "Circuitweaver Plush",
+  "block.starexpress.jade_plush": "Jade Plush",
   "item.starexpress.tape": "Tape",
       "item.starexpress.tape.tooltip.1": "Use on another player to silence their pathetic cries.",
       "item.starexpress.tape.tooltip.2": "Silenced players will suffocate if left outside for too long.",

@@ -23,5 +23,6 @@ public interface StarryExpressItems {
 
     static void addFunctionalEntries(FabricItemGroupEntries fabricItemGroupEntries) {
         fabricItemGroupEntries.accept(ModBlocks.CIRCUITWEAVER_PLUSH);
+        fabricItemGroupEntries.accept(ModBlocks.JADE_PLUSH);
     }
 }

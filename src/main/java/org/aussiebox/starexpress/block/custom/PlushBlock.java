@@ -54,6 +54,9 @@ public class PlushBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
         if (state.getBlock() == ModBlocks.CIRCUITWEAVER_PLUSH) {
             ret = ModSounds.BLOCK_CIRCUITWEAVER_PLUSH_HONK;
         }
+        if (state.getBlock() == ModBlocks.JADE_PLUSH) {
+            ret = ModSounds.BLOCK_CIRCUITWEAVER_PLUSH_HONK;
+        }
 
         return ret;
     }

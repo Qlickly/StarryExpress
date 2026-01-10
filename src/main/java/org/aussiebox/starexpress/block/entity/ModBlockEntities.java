@@ -10,7 +10,10 @@ public interface ModBlockEntities {
 
     BlockEntityTypeRegistrar registrar = new BlockEntityTypeRegistrar(StarryExpress.MOD_ID);
 
-    BlockEntityType<PlushBlockEntity> PLUSH = registrar.create("plush", BlockEntityType.Builder.of(PlushBlockEntity::new, ModBlocks.CIRCUITWEAVER_PLUSH));
+    BlockEntityType<PlushBlockEntity> PLUSH = registrar.create("plush", BlockEntityType.Builder.of(PlushBlockEntity::new,
+            ModBlocks.CIRCUITWEAVER_PLUSH,
+            ModBlocks.JADE_PLUSH
+    ));
 
     static void init() {
         registrar.registerEntries();
